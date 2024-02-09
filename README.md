@@ -1,135 +1,131 @@
-Sure, here's an expanded version of the README.md file:
+# Welcome to the AirBnB Clone Project!
 
-```markdown
-# Airbnb Clone Project
+## Getting Started
 
-## 1. Project Goals
+### What’s a command interpreter?
 
-The Airbnb Clone Project aims to replicate the functionality of the popular Airbnb website, allowing users to list, discover, and book accommodations worldwide. The primary goals of the project include:
+Do you remember the Shell? It’s exactly the same but limited to a specific use-case. In our case, we want to:
 
-- Creating a user-friendly interface for hosts to list their properties and manage bookings.
-- Implementing a robust search and filtering system to help guests find accommodations that match their preferences.
-- Incorporating user authentication and authorization mechanisms to ensure secure access to the platform.
-- Developing a seamless booking and payment process for users to reserve accommodations.
-- Providing a platform for users to leave reviews and ratings for properties they have stayed in.
-- Ensuring scalability and performance to accommodate a large user base and high traffic volumes.
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database, etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
 
-## 2. Table of Content
+## Learning Objectives
 
-- [Environment](#environment)
-- [Installation](#installation)
-- [File Descriptions](#file-descriptions)
-- [Usage](#usage)
-- [Examples of Use](#examples-of-use)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [Bugs](#bugs)
-- [Authors](#authors)
-- [License](#license)
+### General
 
-## Environment
+- How to create a Python package
+- How to create a command interpreter in Python using the cmd module
+- What is Unit testing and how to implement it in a large project
+- How to serialize and deserialize a Class
+- How to write and read a JSON file
+- How to manage datetime
+- What is an UUID
+- What is *args and how to use it
+- What is **kwargs and how to use it
+- How to handle named arguments in a function
 
-The project requires the following environment:
+## Execution
 
-- Python 3.x
-- Flask
-- SQL database (e.g., SQLite, MySQL, PostgreSQL)
+Your shell should work like this in interactive mode:
 
-## Installation
+```bash
+$ ./console.py
+(hbnb) help
 
-To set up the project locally, follow these steps:
+Documented commands (type help <topic>):
+========================================
+EOF help quit
 
-1. Clone the repository to your local machine:
-
-```
-git clone https://github.com/your_username/airbnb_clone.git
-```
-
-2. Navigate to the project directory:
-
-```
-cd airbnb_clone
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
 ```
 
-3. Install the required dependencies:
+But also in non-interactive mode: (like the Shell project in C)
 
-```
-pip install -r requirements.txt
-```
+```bash
+$ echo "help" | ./console.py
 
-4. Set up your database:
-   - Create a new SQL database and configure the database connection in `config.py`.
-   - Run the database migration scripts to create the necessary tables:
+(hbnb)
 
-```
-flask db init
-flask db migrate
-flask db upgrade
-```
+Documented commands (type help <topic>):
+========================================
 
-5. Configure environment variables (if necessary):
-   - Set up any required environment variables such as API keys, database credentials, or secret keys.
+EOF help quit
+(hbnb)
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
 
-## File Descriptions
-
-The project directory structure is organized as follows:
-
-- `app.py`: Main application file containing Flask routes and logic.
-- `models.py`: Definition of database models using SQLAlchemy.
-- `templates/`: HTML templates for rendering web pages.
-- `static/`: Static files such as CSS, JavaScript, and images.
-- `tests/`: Unit and integration tests for the application.
-- `requirements.txt`: List of Python dependencies for easy installation.
-
-## Usage
-
-To run the application, execute the following command:
-
-```
-python app.py
+  
+Documented commands (type help <topic>):
+========================================
+EOF help quit
+(hbnb)
+$
 ```
 
-The application will start running on `http://localhost:5000` by default. You can access the application through your web browser.
+## Usage Examples
 
-## Examples of Use
+### Launching the console
 
-Here are some examples of how users can interact with the Airbnb Clone platform:
-
-- Register as a new user.
-- Log in to your account.
-- Search for accommodations by location, date, price range, and other criteria.
-- View property details, including photos, descriptions, amenities, and reviews.
-- Book accommodations for desired dates and number of guests.
-- Manage your bookings, including viewing upcoming reservations and past stays.
-- Leave reviews and ratings for properties you have stayed in.
-
-## Testing
-
-The project includes unit and integration tests to ensure the reliability and correctness of the codebase. You can run the tests using the following command:
-
-```
-python -m unittest discover tests
+```bash
+$ ./console.py
+(hbnb) 
 ```
 
-## Contributing
+### Creating a new object
 
-Contributions to the project are welcome! If you would like to contribute, please follow these guidelines:
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Make your changes and ensure that the code passes all tests.
-- Submit a pull request detailing your changes.
+```bash
+(hbnb) create
+** class name missing **
+(hbnb) create User
+670265eb-5982-489e-8b92-2dff054f0776
+```
 
-## Bugs
+### Show an object
 
-If you encounter any bugs or issues, please report them [here](https://github.com/your_username/airbnb_clone/issues).
+```bash
+(hbnb) show User
+** instance id missing **
+(hbnb) show User 670265eb-5982-489e-8b92-2dff054f0776
+[User] (670265eb-5982-489e-8b92-2dff054f0776) {'created_at': datetime.datetime(2020, 2, 19, 18, 8, 58, 458246), 'id': '670265eb-5982-489e-8b92-2dff054f0776', 'updated_at': datetime.datetime(2020, 2, 19, 18, 8, 58, 458261)}
+```
+
+### Update an object
+
+```bash
+(hbnb) all
+["[User] (70f71c16-962b-48ad-9df8-9203fe23d612) {'created_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341144), 'id': '70f71c16-962b-48ad-9df8-9203fe23d612', 'updated_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341161)}"]
+(hbnb) update
+** class name missing **
+(hbnb) update User
+** instance id missing **
+(hbnb) update User 70f71c16-962b-48ad-9df8-9203fe23d612
+** attribute name missing **
+(hbnb) update User 70f71c16-962b-48ad-9df8-9203fe23d612  Age "20"
+(hbnb) all
+["[User] (70f71c16-962b-48ad-9df8-9203fe23d612) {'Age': 20, 'created_at': datetime.datetime(2020, 2, 19, 18, 11, 32, 341144), 'id': '70f71c16-962b-48ad-9df8-9203fe23d612', 'updated_at': datetime.datetime(2020, 2, 19, 18, 13, 9, 937933)}"]
+```
+
+### Destroy an object
+
+```bash
+(hbnb) destroy
+** class name missing **
+(hbnb) destroy User
+** instance id missing **
+(hbnb) destroy User 670265eb-5982-489e-8b92-2dff054f0776
+(hbnb)
+```
 
 ## Authors
 
-- [Author Name](https://github.com/author_username)
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-```
-
-Feel free to further customize the content to better suit your project's requirements and specifications.
+- [Author Name](https://github.com/osinnworld)
